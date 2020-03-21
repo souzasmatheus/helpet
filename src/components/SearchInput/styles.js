@@ -1,11 +1,11 @@
 import { StyleSheet, Dimensions } from 'react-native';
-import { colors } from '../../../config/theme';
+import { colors, sizes } from '../../../config/theme';
 
 const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   inputContainer: {
-    width: width - 25,
+    width: width - sizes.margin,
     paddingHorizontal: 10,
     paddingVertical: 10,
     backgroundColor: colors.white,
