@@ -6,8 +6,9 @@ const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   inputContainer: {
     width: width - sizes.margin,
+    marginVertical: 10,
     paddingHorizontal: 10,
-    paddingVertical: 10,
+    paddingVertical: 5,
     backgroundColor: colors.white,
     flexDirection: 'row',
     justifyContent: 'space-between',

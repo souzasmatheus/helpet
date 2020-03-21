@@ -3,13 +3,15 @@ import { View, ImageBackground, Text } from 'react-native';
 import styles from './styles';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-function Card({ movieName, year, imgPath }) {
+function Card({ movieName, year, imgPath, style = {} }) {
   return (
-    <TouchableOpacity activeOpacity={0.8} style={styles.outterContainer}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      style={[styles.outterContainer, Object.assign({}, style)]}
+    >
       <ImageBackground
         source={{
-          uri:
-            imgPath,
+          uri: imgPath,
         }}
         style={styles.backgroundImage}
       >
