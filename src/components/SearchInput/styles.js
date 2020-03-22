@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderRadius: 5,
+    borderRadius: sizes.borderRadius,
   },
   input: {
     flex: 1,
