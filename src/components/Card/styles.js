@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   textBackground: {
-    height: 50,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
     backgroundColor: colors.white,
     opacity: 0.5,
     alignItems: 'center',
@@ -26,8 +27,9 @@ const styles = StyleSheet.create({
   },
   nameText: {
     fontWeight: '600',
-    fontSize: 18
-  }
+    fontSize: 18,
+    textAlign: 'center',
+  },
 });
 
 export default styles;
