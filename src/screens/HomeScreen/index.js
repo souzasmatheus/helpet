@@ -21,17 +21,13 @@ function HomeScreen() {
     dispatch(fetchMovies(fetchPathGenerator(query, '1')));
   };
 
-  console.log(`
-    movies: ${JSON.stringify(movies)},
-    isLoading: ${isLoading},
-    error: ${error}
-  `);
-
   return (
     <View style={styles.container}>
       <SearchInput searchMovie={searchMovie} />
       <View style={styles.contentContainer}>
-        {!isLoading && movies.length === 0 && <Text>No searches yet</Text>}
+        {!isLoading && !error && movies.length === 0 && (
+          <Text>No searches yet</Text>
+        )}
         {isLoading && <ActivityIndicator />}
         {!isLoading && movies.length > 0 && (
           <FlatList
@@ -41,12 +37,15 @@ function HomeScreen() {
               <Card
                 style={{ marginBottom: 10 }}
                 movieName={item.title}
-                year={item.release_date.split('-')[0] || ''}
+                year={item.release_date ? item.release_date.split('-')[0] : ''}
                 imgPath={imgPathGenerator(item.poster_path)}
               />
             )}
             keyExtractor={item => `separator-${item.id}`}
           />
+        )}
+        {!isLoading && error && (
+          <Text>There has been an error. Please, try again!</Text>
         )}
       </View>
     </View>
