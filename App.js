@@ -7,6 +7,8 @@ import store from './src/redux/store';
 import HomeScreen from './src/screens/HomeScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
 
+import { colors } from './config/theme';
+
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -18,7 +20,17 @@ export default function App() {
           <Stack.Screen
             name="Details"
             component={DetailsScreen}
-            options={({ route }) => ({ title: route.params.title })}
+            options={({ route }) => ({
+              title: route.params.title,
+              headerTintColor: colors.yellow,
+              headerTitleStyle: {
+                color: "#000000"
+              },
+              headerBackTitle: ' ',
+              headerBackTitleStyle: {
+                color: colors.yellow,
+              },
+            })}
           />
         </Stack.Navigator>
       </NavigationContainer>

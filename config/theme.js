@@ -1,7 +1,7 @@
 export const colors = {
   lightGray: '#EFEFF0',
   white: '#ffffff',
-  yellow: 'f3b03a',
+  yellow: '#f3b03a',
 };
 
 export const sizes = {
