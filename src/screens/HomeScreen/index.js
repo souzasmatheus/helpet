@@ -2,15 +2,15 @@ import React from 'react';
 import { View, FlatList, ActivityIndicator, Text } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchMovies } from '../../redux/actions';
-import { fetchPathGenerator, imgPathGenerator } from '../../utils/index';
+import { fetchMovies, setSelectedMovie } from '../../redux/actions';
+import { fetchPathGenerator } from '../../utils/index';
 
 import styles from './styles';
 
 import SearchInput from '../../components/SearchInput';
 import Card from '../../components/Card';
 
-function HomeScreen() {
+function HomeScreen({ navigation }) {
   const movies = useSelector(state => state.movies);
   const isLoading = useSelector(state => state.isLoading);
   const error = useSelector(state => state.error);
@@ -19,6 +19,11 @@ function HomeScreen() {
 
   const searchMovie = query => {
     dispatch(fetchMovies(fetchPathGenerator(query, '1')));
+  };
+
+  const goToDetails = movie => {
+    dispatch(setSelectedMovie(movie));
+    navigation.navigate('Details');
   };
 
   return (
@@ -34,12 +39,7 @@ function HomeScreen() {
             style={styles.flatList}
             data={movies}
             renderItem={({ item }) => (
-              <Card
-                style={{ marginBottom: 10 }}
-                movieName={item.title}
-                year={item.release_date ? item.release_date.split('-')[0] : ''}
-                imgPath={imgPathGenerator(item.poster_path)}
-              />
+              <Card style={{ marginBottom: 10 }} movie={item} />
             )}
             keyExtractor={item => `separator-${item.id}`}
           />

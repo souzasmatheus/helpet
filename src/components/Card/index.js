@@ -2,8 +2,11 @@ import React from 'react';
 import { View, ImageBackground, Text } from 'react-native';
 import styles from './styles';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { imgPathGenerator } from '../../utils/index';
 
-function Card({ movieName, year, imgPath, style = {} }) {
+function Card({ movie, style = {} }) {
+  const { title, release_date, poster_path } = movie;
+
   return (
     <TouchableOpacity
       activeOpacity={0.8}
@@ -11,14 +14,14 @@ function Card({ movieName, year, imgPath, style = {} }) {
     >
       <ImageBackground
         source={{
-          uri: imgPath,
+          uri: imgPathGenerator(poster_path),
         }}
         style={styles.backgroundImage}
       >
         <View style={styles.textContainer}>
           <View style={styles.textBackground}>
-            <Text style={styles.nameText}>{movieName}</Text>
-            <Text>{year}</Text>
+            <Text style={styles.nameText}>{title}</Text>
+            <Text>{release_date ? release_date.split('-')[0] : ''}</Text>
           </View>
         </View>
       </ImageBackground>
