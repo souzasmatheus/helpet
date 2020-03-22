@@ -3,6 +3,7 @@ import {
   FETCHING_MOVIES,
   FETCH_MOVIES_SUCCESS,
   FETCH_MOVIES_ERROR,
+  SET_SELECTED_MOVIE,
 } from './constants';
 
 export function fetchingMovies(bool) {
@@ -41,5 +42,12 @@ export function fetchMovies(url) {
         dispatch(fetchingMovies(false));
         dispatch(fetchingFailed(true));
       });
+  };
+}
+
+export function setSelectedMovie(movie) {
+  return {
+    type: SET_SELECTED_MOVIE,
+    movie,
   };
 }

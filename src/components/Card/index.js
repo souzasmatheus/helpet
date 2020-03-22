@@ -4,13 +4,14 @@ import styles from './styles';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { imgPathGenerator } from '../../utils/index';
 
-function Card({ movie, style = {} }) {
+function Card({ movie, goToDetails, style = {} }) {
   const { title, release_date, poster_path } = movie;
 
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       style={[styles.outterContainer, Object.assign({}, style)]}
+      onPress={() => goToDetails(movie)}
     >
       <ImageBackground
         source={{

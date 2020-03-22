@@ -23,7 +23,9 @@ function HomeScreen({ navigation }) {
 
   const goToDetails = movie => {
     dispatch(setSelectedMovie(movie));
-    navigation.navigate('Details');
+    navigation.navigate('Details', {
+      title: movie.title,
+    });
   };
 
   return (
@@ -39,7 +41,11 @@ function HomeScreen({ navigation }) {
             style={styles.flatList}
             data={movies}
             renderItem={({ item }) => (
-              <Card style={{ marginBottom: 10 }} movie={item} />
+              <Card
+                style={{ marginBottom: 10 }}
+                movie={item}
+                goToDetails={goToDetails}
+              />
             )}
             keyExtractor={item => `separator-${item.id}`}
           />
