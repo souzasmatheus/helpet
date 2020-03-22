@@ -4,7 +4,7 @@ import styles from './styles';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { imgPathGenerator } from '../../utils/index';
 
-function Card({ movie, goToDetails, style = {} }) {
+function Card({ movie, goToDetails, showInfo, style = {} }) {
   const { title, release_date, poster_path } = movie;
 
   return (
@@ -19,12 +19,14 @@ function Card({ movie, goToDetails, style = {} }) {
         }}
         style={styles.backgroundImage}
       >
-        <View style={styles.textContainer}>
-          <View style={styles.textBackground}>
-            <Text style={styles.nameText}>{title}</Text>
-            <Text>{release_date ? release_date.split('-')[0] : ''}</Text>
+        {showInfo && (
+          <View style={styles.textContainer}>
+            <View style={styles.textBackground}>
+              <Text style={styles.nameText}>{title}</Text>
+              <Text>{release_date ? release_date.split('-')[0] : ''}</Text>
+            </View>
           </View>
-        </View>
+        )}
       </ImageBackground>
     </TouchableOpacity>
   );

@@ -42,6 +42,7 @@ function HomeScreen({ navigation }) {
             data={movies}
             renderItem={({ item }) => (
               <Card
+                showInfo
                 style={{ marginBottom: 10 }}
                 movie={item}
                 goToDetails={goToDetails}
