@@ -5,13 +5,12 @@ const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   outterContainer: {
-    borderRadius: 15,
+    borderRadius: sizes.borderRadius,
     overflow: 'hidden',
   },
   backgroundImage: {
     width: width - sizes.margin,
     height: width - sizes.margin,
-    overflow: 'hidden',
   },
   textContainer: {
     height: '100%',

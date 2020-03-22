@@ -37,6 +37,9 @@ export function fetchMovies(url) {
         return res.data.results;
       })
       .then(movies => dispatch(fetchingSucceeded(movies)))
-      .catch(err => dispatch(fetchingFailed(true)));
+      .catch(err => {
+        dispatch(fetchingMovies(false));
+        dispatch(fetchingFailed(true));
+      });
   };
 }
