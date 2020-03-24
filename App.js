@@ -6,8 +6,9 @@ import store from './src/redux/store';
 
 import HomeScreen from './src/screens/HomeScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
+import Save from './src/components/Save';
 
-import { colors } from './config/theme';
+import { sizes, colors } from './config/theme';
 
 const Stack = createStackNavigator();
 
@@ -24,12 +25,15 @@ export default function App() {
               title: route.params.title,
               headerTintColor: colors.yellow,
               headerTitleStyle: {
-                color: "#000000"
+                color: '#000000',
               },
               headerBackTitle: ' ',
               headerBackTitleStyle: {
                 color: colors.yellow,
               },
+              headerRight: () => (
+                <Save style={{ marginRight: sizes.margin / 2 }} />
+              ),
             })}
           />
         </Stack.Navigator>
