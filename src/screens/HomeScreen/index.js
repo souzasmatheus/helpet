@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, FlatList, ActivityIndicator, Text } from 'react-native';
+import {
+  View,
+  FlatList,
+  ActivityIndicator,
+  Text,
+  AsyncStorage,
+} from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchMovies, setSelectedMovie } from '../../redux/actions';
@@ -27,6 +33,8 @@ function HomeScreen({ navigation }) {
       title: movie.title,
     });
   };
+
+  AsyncStorage.getItem('@savedMovies').then(r => console.log(r));
 
   return (
     <View style={styles.container}>
