@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, FlatList, ActivityIndicator, Text } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchMovies } from '../../redux/actions';
+import { fetchMovies, fetchMoreMovies } from '../../redux/actions';
 import { fetchPathGenerator, imgPathGenerator } from '../../utils/index';
 
 import styles from './styles';
@@ -12,14 +12,36 @@ import Card from '../../components/Card';
 
 function HomeScreen() {
   const movies = useSelector(state => state.movies);
+  const totalPages = useSelector(state => state.totalPages);
   const isLoading = useSelector(state => state.isLoading);
   const error = useSelector(state => state.error);
+  const isLoadingMore = useSelector(state => state.isLoadingMore);
+  const errorLoadingMore = useSelector(state => state.errorLoadingMore);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [query, setQuery] = useState(1);
 
   const dispatch = useDispatch();
 
   const searchMovie = query => {
+    setQuery(query);
     dispatch(fetchMovies(fetchPathGenerator(query, '1')));
   };
+
+  const loadMore = () => {
+    if (currentPage + 1 > totalPages) {
+      return;
+    }
+    dispatch(fetchMoreMovies(fetchPathGenerator(query, currentPage + 1)));
+    setCurrentPage(currentPage + 1);
+  };
+
+  const renderFooter = () =>
+    !isLoadingMore &&
+    errorLoadingMore && (
+      <View style={{ alignItems: 'center' }}>
+        <Text>There has been an error loading more</Text>
+      </View>
+    );
 
   return (
     <View style={styles.container}>
@@ -41,7 +63,11 @@ function HomeScreen() {
                 imgPath={imgPathGenerator(item.poster_path)}
               />
             )}
-            keyExtractor={item => `separator-${item.id}`}
+            keyExtractor={item => `card-${item.id}`}
+            onEndReached={() => loadMore()}
+            onEndReachedThreshold={0.5}
+            initialNumToRender={10}
+            ListFooterComponent={() => renderFooter()}
           />
         )}
         {!isLoading && error && (
