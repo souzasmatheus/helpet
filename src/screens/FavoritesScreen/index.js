@@ -9,7 +9,7 @@ import styles from './styles';
 import Card from '../../components/Card';
 
 function FavoritesScreen({ navigation }) {
-  const [isMounted, setIsMounted] = useState(true);
+  const [numToRender, setNumToRender] = useState(10);
   const [savedMovies, setSavedMovies] = useState([]);
   const dispatch = useDispatch();
 
@@ -20,21 +20,23 @@ function FavoritesScreen({ navigation }) {
     });
   };
 
+  const loadMore = () => {
+    setNumToRender(numToRender + 10);
+  };
+
   useEffect(() => {
     async function getSavedMovies() {
       try {
         const savedMovies =
           JSON.parse(await AsyncStorage.getItem('@savedMovies')) || [];
 
-        if (isMounted) setSavedMovies(savedMovies);
+        setSavedMovies(savedMovies);
       } catch (error) {
-        if (isMounted) setSavedMovies([]);
+        setSavedMovies([]);
       }
     }
 
     getSavedMovies();
-
-    return () => setIsMounted(false);
   });
 
   return (
@@ -43,7 +45,7 @@ function FavoritesScreen({ navigation }) {
       {savedMovies.length > 0 && (
         <FlatList
           contentContainerStyle={styles.flatList}
-          data={savedMovies}
+          data={savedMovies.filter((el, index) => index < numToRender)}
           renderItem={({ item }) => (
             <Card
               showInfo
@@ -53,6 +55,8 @@ function FavoritesScreen({ navigation }) {
             />
           )}
           keyExtractor={item => `separator-${item.id || item.title}`}
+          onEndReached={() => loadMore()}
+          onEndReachedThreshold={0.5}
         />
       )}
     </View>
