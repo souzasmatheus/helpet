@@ -4,7 +4,18 @@ import {
   FETCH_MOVIES_SUCCESS,
   FETCH_MOVIES_ERROR,
   SET_SELECTED_MOVIE,
+  FETCHING_MORE_MOVIES,
+  FETCH_MORE_MOVIES_SUCCESS,
+  FETCH_MORE_MOVIES_ERROR,
+  SET_TOTAL_PAGES,
 } from './constants';
+
+export function setTotalPages(num) {
+  return {
+    type: SET_TOTAL_PAGES,
+    totalPages: num,
+  };
+}
 
 export function fetchingMovies(bool) {
   return {
@@ -35,9 +46,9 @@ export function fetchMovies(url) {
       .get(url)
       .then(res => {
         dispatch(fetchingMovies(false));
-        return res.data.results;
+        dispatch(fetchingSucceeded(res.data.results));
+        dispatch(setTotalPages(res.data.results));
       })
-      .then(movies => dispatch(fetchingSucceeded(movies)))
       .catch(err => {
         dispatch(fetchingMovies(false));
         dispatch(fetchingFailed(true));
@@ -49,5 +60,44 @@ export function setSelectedMovie(movie) {
   return {
     type: SET_SELECTED_MOVIE,
     movie,
+  };
+}
+
+export function fetchingMoreMovies(bool) {
+  return {
+    type: FETCHING_MORE_MOVIES,
+    isLoading: bool,
+  };
+}
+
+export function fetchingMoreFailed(bool) {
+  return {
+    type: FETCH_MORE_MOVIES_ERROR,
+    hasErrored: bool,
+  };
+}
+
+export function fetchingMoreSucceeded(movies) {
+  return {
+    type: FETCH_MORE_MOVIES_SUCCESS,
+    movies,
+  };
+}
+
+export function fetchMoreMovies(url) {
+  return dispatch => {
+    dispatch(fetchingMoreMovies(true));
+
+    axios
+      .get(url)
+      .then(res => {
+        dispatch(fetchingMoreMovies(false));
+        return res.data.results;
+      })
+      .then(movies => dispatch(fetchingMoreSucceeded(movies)))
+      .catch(err => {
+        dispatch(fetchingMoreMovies(false));
+        dispatch(fetchingMoreFailed(true));
+      });
   };
 }
