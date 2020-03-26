@@ -23,6 +23,8 @@ After running this command, all you need to do is press `i` to run iOS simulator
 
 ## 🎉 Running without installing
 
+You may alternatively follow [this link](https://expo.io/@souzasmatheus/helpet) to go to this app's Expo public page and scan its QR code there.
+
 ## 📖 Screenshots
 
 <img src="/../screenshots/assets/screenshots/movies.png?raw=true" alt="Main screen of app" width="250"/>
