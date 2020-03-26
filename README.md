@@ -1,5 +1,4 @@
 #Helpet Project
-https://github.com/souzasmatheus/helpet.git
 
 This is a project made by Matheus Souza as part of Helpet's application for a developer position.
 
@@ -26,6 +25,6 @@ After running this command, all you need to do is press `i` to run iOS simulator
 
 ## 📖 Screenshots
 
-![Main screen of app](/../screenshots/assets/screenshots/movies.png?raw=true 'Main screen')
-![Details screen of app](/../screenshots/assets/screenshots/details.png?raw=true 'Details screen')
-![Favorites screen of app](/../screenshots/assets/screenshots/favorites.png?raw=true 'Favorites screen')
+<img src="/../screenshots/assets/screenshots/movies.png?raw=true" alt="Main screen of app" width="250"/>
+<img src="/../screenshots/assets/screenshots/details.png?raw=true" alt="Details screen of app" width="250"/>
+<img src="/../screenshots/assets/screenshots/favorites.png?raw=true" alt="Favorites screen of app" width="250"/>
