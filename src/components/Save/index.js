@@ -54,7 +54,7 @@ function Save({ style = {} }) {
   return (
     <TouchableOpacity onPress={() => toggleSave()}>
       <Image
-        style={[styles.img, Object.assign({}, style)]}
+        style={[styles.img, { ...style }]}
         source={isSaved ? fulfilledHeart : emptyHeart}
       />
     </TouchableOpacity>

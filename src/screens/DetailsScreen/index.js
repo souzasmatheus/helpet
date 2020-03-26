@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, FlatList, View, Text } from 'react-native';
+import { ScrollView, View, Text } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import Card from '../../components/Card';

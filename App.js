@@ -23,7 +23,7 @@ export default function App() {
           <Stack.Screen
             name="Movies"
             component={HomeScreen}
-            options={({ route, navigation }) => ({
+            options={{
               headerRight: () => (
                 <NavigateIcon
                   style={{ marginRight: sizes.margin / 2 }}
@@ -31,7 +31,7 @@ export default function App() {
                   goTo="Favorites"
                 />
               ),
-            })}
+            }}
           />
           <Stack.Screen
             name="Details"

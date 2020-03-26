@@ -49,7 +49,7 @@ export function fetchMovies(url) {
         dispatch(fetchingSucceeded(res.data.results));
         dispatch(setTotalPages(res.data.results));
       })
-      .catch(err => {
+      .catch(() => {
         dispatch(fetchingMovies(false));
         dispatch(fetchingFailed(true));
       });
@@ -95,7 +95,7 @@ export function fetchMoreMovies(url) {
         return res.data.results;
       })
       .then(movies => dispatch(fetchingMoreSucceeded(movies)))
-      .catch(err => {
+      .catch(() => {
         dispatch(fetchingMoreMovies(false));
         dispatch(fetchingMoreFailed(true));
       });

@@ -27,10 +27,10 @@ function FavoritesScreen({ navigation }) {
   useEffect(() => {
     async function getSavedMovies() {
       try {
-        const savedMovies =
+        const savedMoviesStorage =
           JSON.parse(await AsyncStorage.getItem('@savedMovies')) || [];
 
-        setSavedMovies(savedMovies);
+        setSavedMovies(savedMoviesStorage);
       } catch (error) {
         setSavedMovies([]);
       }

@@ -26,9 +26,9 @@ function HomeScreen({ navigation }) {
 
   const dispatch = useDispatch();
 
-  const searchMovie = query => {
-    setQuery(query);
-    dispatch(fetchMovies(fetchPathGenerator(query, '1')));
+  const searchMovie = incomingQuery => {
+    setQuery(incomingQuery);
+    dispatch(fetchMovies(fetchPathGenerator(incomingQuery, '1')));
   };
 
   const goToDetails = movie => {

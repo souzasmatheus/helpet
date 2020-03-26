@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ImageBackground, Text } from 'react-native';
-import styles from './styles';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import styles from './styles';
 import { imgPathGenerator } from '../../utils/index';
 
 function Card({ movie, goToDetails, showInfo, style = {} }) {
@@ -10,7 +10,7 @@ function Card({ movie, goToDetails, showInfo, style = {} }) {
   return (
     <TouchableOpacity
       activeOpacity={0.8}
-      style={[styles.outterContainer, Object.assign({}, style)]}
+      style={[styles.outterContainer, { ...style }]}
       onPress={() => goToDetails(movie)}
     >
       <ImageBackground
